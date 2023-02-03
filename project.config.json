@@ -27,7 +27,7 @@
         "useApiHook": true,
         "useApiHostProcess": true,
         "showShadowRootInWxmlPanel": true,
-        "packNpmManually": false,
+        "packNpmManually": true,
         "enableEngineNative": false,
         "packNpmRelationList": [],
         "minifyWXSS": true,

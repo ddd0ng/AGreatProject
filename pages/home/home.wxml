@@ -1,3 +1,17 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+
+<!--顶端轮播图-->
+<swiper class = "dd_swiper" indicator-dots="true" autoplay="true" interval="2000" circular="true">
+    <swiper-item>
+        <image src="/static/firstcatelog.png" mode='aspectFit'></image>
+    </swiper-item>
+    <swiper-item>
+        <view class = "dd_item"> B </view>
+    </swiper-item>
+    <swiper-item>
+        <view class = "dd_item"> C </view>
+    </swiper-item>
+</swiper>
+
+
 

@@ -1,1 +1,9 @@
 /* pages/home/home.wxss */
+.dd_swiper {
+    height: 150px;
+}
+.dd_item {
+    height: 100%;
+    line-height: 150px;
+    text-align: center;
+}

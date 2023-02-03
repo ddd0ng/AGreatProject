@@ -1,2 +1,11 @@
 <!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<!--如果未登录-->
+<van-button type="primary">主要按钮</van-button>
+<van-button type="default">默认按钮</van-button>
+<van-button type="primary">主要按钮</van-button>
+<van-button type="info">信息按钮</van-button>
+<van-button type="warning">警告按钮</van-button>
+<van-button type="danger">危险按钮</van-button>
+<van-button plain type="primary">朴素按钮</van-button>
+<van-button plain type="info">朴素按钮</van-button>
+<button>123</button>
