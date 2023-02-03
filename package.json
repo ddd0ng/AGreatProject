@@ -1,0 +1,22 @@
+{
+  "name": "xy",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wiidD/AGreatProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wiidD/AGreatProject/issues"
+  },
+  "homepage": "https://github.com/wiidD/AGreatProject#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.10.12"
+  }
+}
