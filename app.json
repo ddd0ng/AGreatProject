@@ -36,7 +36,8 @@
       }]
   },
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-field": "@vant/weapp/field/index"
   },
   "window":{
     "backgroundTextStyle":"light",

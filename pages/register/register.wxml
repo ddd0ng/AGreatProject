@@ -5,15 +5,40 @@
   <view class="title">账户注册</view>
   <view class="dd_login">
     <label>用户名</label>
-    <input placeholder="username"/>
+    <van-cell-group>
+        <van-field
+            maxlength = "15"
+            value="{{username}}"
+            placeholder="username"
+            border="{{ false }}"
+            bind:change="UserChange"
+        />
+    </van-cell-group>
+    
     <label>密码</label>
-    <input placeholder="password"/>
+    <van-cell-group>
+        <van-field
+            maxlength = "15"
+            value="{{password}}"
+            placeholder="password"
+            border="{{ false }}"
+            bind:change="PassChange"
+        />
+    </van-cell-group>
     <label>手机号</label>
-    <input placeholder="phone number"/>
+    <van-cell-group>
+        <van-field
+            maxlength = "11"
+            value="{{phonenumber}}"
+            placeholder="phonenumber"
+            border="{{ false }}"
+            bind:change="NumChange"
+        />
+    </van-cell-group>
     <text user-select="true"> 56Wd5L2g5aSp5aSp5byA5b+D\n</text>
     <label>(base64)</label>
 
-    <van-button type = "primary" size = "large" >点击注册</van-button>
+    <van-button type = "primary" size = "large" bindtap="dd_register">点击注册</van-button>
   </view>
 </view>
 

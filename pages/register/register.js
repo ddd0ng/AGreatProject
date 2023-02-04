@@ -5,8 +5,52 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        "uesrname": '',
+        "password": '',
+        "phonenumber": ''
     },
+
+    /** 
+     * 点击注册函数逻辑
+    */
+    dd_register:function() {
+        console.log(this.data); 
+        if(this.data.uesrname === "" || this.data.password === "" || this.data.phonenumber === "") {
+            console.log("need more");
+            //输入不完整，需要提醒
+        } else {
+            //注册
+            console.log("send");
+            /*
+                
+            */
+        }
+    },
+
+    /**
+     * 用input值修改data
+     */
+    UserChange(event) {
+        // event.detail 为当前输入的值
+        //console.log(event);
+        this.setData({
+            uesrname:event.detail
+        })
+      },
+      PassChange(event) {
+        // event.detail 为当前输入的值
+        //console.log(event);
+        this.setData({
+            password:event.detail
+        })
+      },
+      NumChange(event) {
+        // event.detail 为当前输入的值
+        //console.log(event);
+        this.setData({
+            phonenumber:event.detail
+        })
+      },
 
     /**
      * 生命周期函数--监听页面加载
