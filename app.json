@@ -4,7 +4,8 @@
     "pages/catalog/catalog",
     "pages/friends/friends",
     "pages/my/my",
-    "pages/logs/logs"
+    "pages/login/login",
+    "pages/register/register"
   ],
   "tabBar": {
       "list": [{
@@ -27,6 +28,11 @@
         "text": "我的",
         "iconPath": "/static/firstmy.png",
         "selectedIconPath": "/static/secondmy.png"
+      }, {
+          "pagePath": "pages/login/login",
+          "text": "我的",
+          "iconPath": "/static/firstmy.png",
+          "selectedIconPath": "/static/secondmy.png"
       }]
   },
   "usingComponents": {

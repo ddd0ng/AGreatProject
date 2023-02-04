@@ -1,0 +1,17 @@
+<!--pages/login/login.wxml-->
+<view class="dd_login-container">
+  <view class="title">账户登录</view>
+  <view class="dd_login">
+    <label>用户名</label>
+    <input placeholder="请输入用户名"/>
+    <label>密码</label>
+    <input placeholder="请输入密码"/>
+    <van-button type = "primary" size = "large" >立即登录</van-button>
+    <view class>
+    <text> \n</text>
+    </view>
+    <van-button type = "info" size = "large" bindtap="TapButToReg" >注册</van-button>
+    <view class="three-line">一一一一一第三方登录一一一一一</view>
+    
+  </view>
+</view>

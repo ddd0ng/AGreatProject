@@ -1,0 +1,19 @@
+<!--pages/register/register.wxml-->
+
+<!--pages/login/login.wxml-->
+<view class="dd_login-container">
+  <view class="title">账户注册</view>
+  <view class="dd_login">
+    <label>用户名</label>
+    <input placeholder="username"/>
+    <label>密码</label>
+    <input placeholder="password"/>
+    <label>手机号</label>
+    <input placeholder="phone number"/>
+    <text user-select="true"> 56Wd5L2g5aSp5aSp5byA5b+D\n</text>
+    <label>(base64)</label>
+
+    <van-button type = "primary" size = "large" >点击注册</van-button>
+  </view>
+</view>
+
