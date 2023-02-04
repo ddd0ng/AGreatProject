@@ -1,4 +1,5 @@
 // pages/register/register.js
+import Dialog from '@vant/weapp/dialog/dialog';
 Page({
 
     /**
@@ -17,7 +18,12 @@ Page({
         console.log(this.data); 
         if(this.data.uesrname === "" || this.data.password === "" || this.data.phonenumber === "") {
             console.log("need more");
-            //输入不完整，需要提醒
+            //输入不完整，需要弹窗提醒
+            Dialog.alert({
+                message: '表格未填写完整， 请填写',
+              }).then(() => {
+                // on close
+              });
         } else {
             //注册
             console.log("send");
@@ -56,7 +62,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
     },
 
     /**

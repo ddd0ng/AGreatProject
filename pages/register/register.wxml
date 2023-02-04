@@ -1,6 +1,6 @@
 <!--pages/register/register.wxml-->
+<van-dialog id="van-dialog" />
 
-<!--pages/login/login.wxml-->
 <view class="dd_login-container">
   <view class="title">账户注册</view>
   <view class="dd_login">
