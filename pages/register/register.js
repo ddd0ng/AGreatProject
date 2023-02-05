@@ -6,7 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        "uesrname": '',
+        "username": '',
         "password": '',
         "phonenumber": ''
     },
@@ -16,7 +16,7 @@ Page({
     */
     dd_register:function() {
         console.log(this.data); 
-        if(this.data.uesrname === "" || this.data.password === "" || this.data.phonenumber === "") {
+        if(this.data.username === "" || this.data.password === "" || this.data.phonenumber === "") {
             console.log("need more");
             //输入不完整，需要弹窗提醒
             Dialog.alert({
@@ -27,9 +27,32 @@ Page({
         } else {
             //注册
             console.log("send");
+            wx.switchTab({
+              url: '/pages/login/login',
+            })
             /*
-                
+            wx.request({
+                url:'接口地址', 
+                //header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+                data: {
+                    name: this.data.username,
+                    password:this.data.password,
+                    phonenumber: this.data.phonenumber,
+                },
+                method: 'post',
+                success: function (res) {
+                    console.log("成功");
+                    console.log(res);
+                    if(成功) {}
+                    wx.switchTab({
+                        url: '/pages/login/login',
+                    })
+                    if(失败){}
+                    
+                }
+            })
             */
+            
         }
     },
 
@@ -40,7 +63,7 @@ Page({
         // event.detail 为当前输入的值
         //console.log(event);
         this.setData({
-            uesrname:event.detail
+            username:event.detail
         })
       },
       PassChange(event) {
