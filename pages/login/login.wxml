@@ -3,10 +3,26 @@
   <view class="title">账户登录</view>
   <view class="dd_login">
     <label>用户名</label>
-    <input placeholder="请输入用户名"/>
+    <van-cell-group>
+        <van-field
+            maxlength = "15"
+            value="{{username}}"
+            placeholder="username"
+            border="{{ false }}"
+            bind:change="UserChange"
+        />
+    </van-cell-group>
     <label>密码</label>
-    <input placeholder="请输入密码"/>
-    <van-button type = "primary" size = "large" >立即登录</van-button>
+    <van-cell-group>
+        <van-field
+            maxlength = "15"
+            value="{{password}}"
+            placeholder="password"
+            border="{{ false }}"
+            bind:change="PassChange"
+        />
+    </van-cell-group>
+    <van-button type = "primary" size = "large" bindtap="dd_login">立即登录</van-button>
     <view class>
     <text> \n</text>
     </view>

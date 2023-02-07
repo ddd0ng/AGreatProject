@@ -1,11 +1,15 @@
 // pages/login/login.js
+
+var app = getApp();
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        "username":"",
+        "password":""
     },
 
     /**
@@ -16,6 +20,30 @@ Page({
           url: '/pages/register/register',
         })
     },
+
+    dd_login() {
+        console.log(this.data);
+        
+        //像后端发送账号密码，会获取一个token
+        //成功时，记录全局变量token与dd_islogin，跳转到首页
+        //失败时，显示原因
+        
+    },
+
+    UserChange(event) {
+        // event.detail 为当前输入的值
+        //console.log(event);
+        this.setData({
+            username:event.detail
+        })
+      },
+      PassChange(event) {
+        // event.detail 为当前输入的值
+        //console.log(event);
+        this.setData({
+            password:event.detail
+        })
+      },
 
     /**
      * 生命周期函数--监听页面加载

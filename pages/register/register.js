@@ -1,5 +1,6 @@
 // pages/register/register.js
 import Dialog from '@vant/weapp/dialog/dialog';
+var app = getApp();
 Page({
 
     /**
@@ -16,6 +17,7 @@ Page({
     */
     dd_register:function() {
         console.log(this.data); 
+        console.log(app.globalData.dd_islogin);
         if(this.data.username === "" || this.data.password === "" || this.data.phonenumber === "") {
             console.log("need more");
             //输入不完整，需要弹窗提醒
@@ -47,6 +49,7 @@ Page({
                     wx.switchTab({
                         url: '/pages/login/login',
                     })
+                    //修改全局变量token值与dd_islogin
                     if(失败){}
                     
                 }

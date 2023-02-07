@@ -35,8 +35,11 @@
             bind:change="NumChange"
         />
     </van-cell-group>
-    <text user-select="true"> 56Wd5L2g5aSp5aSp5byA5b+D\n</text>
-    <label>(base64)</label>
+    <wxs module="sample">
+    //<text user-select="true"> 56Wd5L2g5aSp5aSp5byA5b+D\n</text>
+    //<label>(base64)</label>
+    </wxs>
+    
 
     <van-button type = "primary" size = "large" bindtap="dd_register">点击注册</van-button>
   </view>
