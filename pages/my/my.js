@@ -1,4 +1,7 @@
 // pages/my/my.js
+
+var app = getApp();
+
 Page({
 
     /**
@@ -12,7 +15,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        if(app.globalData.dd_islogin === false) {
+            wx.navigateTo({
+              url: '/pages/register/register',
+            })
+        } else {
+            console.log(app.globalData.dd_islogin);
+            console.log("ok");
+        }
     },
 
     /**
@@ -26,7 +36,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        
     },
 
     /**
