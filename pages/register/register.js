@@ -29,32 +29,32 @@ Page({
         } else {
             //注册
             console.log("send");
-            wx.switchTab({
-              url: '/pages/login/login',
-            })
-            /*
+            
             wx.request({
-                url:'接口地址', 
+                url: `http://7xtdd6.natappfree.cc/api/v1/user/register`, 
                 //header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
                 data: {
-                    name: this.data.username,
+                    user_name: this.data.username,
                     password:this.data.password,
-                    phonenumber: this.data.phonenumber,
+                    //phonenumber: this.data.phonenumber,
                 },
                 method: 'post',
                 success: function (res) {
                     console.log("成功");
                     console.log(res);
-                    if(成功) {}
+                    /*if(成功) {}
                     wx.switchTab({
                         url: '/pages/login/login',
                     })
                     //修改全局变量token值与dd_islogin
                     if(失败){}
+                    */
                     
+                },
+                fail: function(error) {
+                    console.log(error);
                 }
             })
-            */
             
         }
     },
