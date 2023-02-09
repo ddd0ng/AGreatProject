@@ -1,7 +1,6 @@
 // pages/login/login.js
-
+import Dialog from '@vant/weapp/dialog/dialog';
 var app = getApp();
-
 Page({
 
     /**
@@ -23,6 +22,19 @@ Page({
 
     dd_login() {
         console.log(this.data);
+        if(this.data.username === "" || this.data.password === "") {
+            Dialog.alert({
+                message: '表格未填写完整， 请填写',
+              }).then(() => {
+                // on close
+              });
+        } else {
+            console.log("denglu");
+            //如果登录成功
+            app.globalData.dd_islogin = true;
+            //token也需要记录
+            
+        }
         
         //像后端发送账号密码，会获取一个token
         //成功时，记录全局变量token与dd_islogin，跳转到首页

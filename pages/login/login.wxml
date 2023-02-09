@@ -1,4 +1,6 @@
 <!--pages/login/login.wxml-->
+<van-dialog id="van-dialog" />
+
 <view class="dd_login-container">
   <view class="title">账户登录</view>
   <view class="dd_login">

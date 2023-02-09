@@ -3,15 +3,38 @@
 <!--顶端轮播图-->
 <swiper class = "dd_swiper" indicator-dots="true" autoplay="true" interval="2000" circular="true">
     <swiper-item>
-        <image src="/static/firstcatelog.png" mode='aspectFit'></image>
+        <van-image
+        width="30rem"
+        height="10rem"
+        fit="scale-down"
+        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
     </swiper-item>
     <swiper-item>
-        <view class = "dd_item"> B </view>
+        <!-- <view class = "dd_item"> B </view> -->
+        <van-image
+        width="30rem"
+        height="10rem"
+        fit="scale-down"
+        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
     </swiper-item>
     <swiper-item>
-        <view class = "dd_item"> C </view>
+        <van-image
+        width="30rem"
+        height="10rem"
+        fit="scale-down"
+        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
     </swiper-item>
 </swiper>
+
+<view> 
+    <van-button round type="info">充电</van-button>
+
+    <van-button round type="info">预约</van-button>
+</view>
+
 
 
 

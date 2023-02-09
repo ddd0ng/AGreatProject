@@ -8,7 +8,16 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        myname: "das",
+        myphone: "",
+        myemail: "",
+        mycar: ""
+    },
+    //点击按钮去修改用户信息
+    taptochange() {
+        wx.navigateTo({
+          url: '/pages/mychange/mychange',
+        })
     },
 
     /**
@@ -22,6 +31,13 @@ Page({
         } else {
             console.log(app.globalData.dd_islogin);
             console.log("ok");
+            this.setData({
+                myname: app.globalData.dd_username,
+                myphone: app.globalData.dd_phonenumber,
+                myemail: app.globalData.dd_email,
+                mycar: app.globalData.dd_carnumber
+            })
+            console.log(this.data.myname);
         }
     },
 

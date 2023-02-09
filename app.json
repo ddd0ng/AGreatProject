@@ -5,7 +5,8 @@
     "pages/friends/friends",
     "pages/my/my",
     "pages/login/login",
-    "pages/register/register"
+    "pages/register/register",
+    "pages/mychange/mychange"
   ],
   "tabBar": {
       "list": [{
@@ -39,7 +40,8 @@
     "van-button": "@vant/weapp/button/index",
     "van-field": "@vant/weapp/field/index",
     "van-dialog": "@vant/weapp/dialog/index",
-    "van-icon": "@vant/weapp/icon/index"
+    "van-icon": "@vant/weapp/icon/index",
+    "van-image": "@vant/weapp/image/index"
   },
   "window":{
     "backgroundTextStyle":"light",
