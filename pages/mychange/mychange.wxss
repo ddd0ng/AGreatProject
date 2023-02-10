@@ -1,1 +1,86 @@
 /* pages/mychange/mychange.wxss */
+/* pages/my/my.wxss */
+
+/* pages/user/user.wxss */
+
+  /*头部盒模型  */
+  
+  .head {
+    display: table;
+    position: relative;
+    margin: 0 auto;
+  }
+  
+  /*基本信息  */
+  
+  .basic {
+    padding-left: 20px;
+    display: block;
+    padding-right: 40rpx;
+    width: 100%;
+    margin-top: 70rpx;
+  }
+  
+  /*信息文本  */
+  
+  .basictext {
+    font-size: 30rpx;
+    color: #828282;
+    display: block;
+  }
+  
+  .namebox {
+    width: 90%;
+    height: 30rpx;
+    border-bottom: 1rpx solid #828282;
+    margin-top: 60rpx;
+    padding-bottom: 68rpx;
+    z-index: 1px;
+  }
+  
+  .name {
+    margin-left: 60rpx;
+    font-size: 33rpx;
+    color: #2f2f2f;
+    float: left;
+    /* left: 1; */
+  
+  }
+  
+  
+  .nametext {
+    font-size: 33rpx;
+    color: #828282;
+    float: center;
+    padding-right: 25rpx;
+    text-align: center;
+    z-index: 3;
+  }
+  
+  
+  
+  .nameicon {
+    width: 18rpx;
+    height: 32rpx;
+    float: right;
+    padding-top: 8rpx;
+    padding-right: 5rpx;
+  }
+  
+  .nameicon-left {
+    vertical-align: auto;
+    /* border: 1px solid red; */
+    width: 40rpx;
+    height: 40rpx;
+    /* float: left; */
+    padding-top: 4rpx;
+    position: absolute;
+    /* left: 0em; */
+    padding-left: 10rpx;
+  }
+  .btn_mid{
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+  }

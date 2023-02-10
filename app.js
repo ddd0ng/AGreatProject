@@ -15,11 +15,11 @@ App({
   },
   globalData: {
     userInfo: null,
-    dd_islogin: true,
+    dd_islogin: false,
     token: "",
     dd_username: "dd",
-    dd_phonenumber: "",
-    dd_carnumber: "",
+    dd_phonenumber: "dd2",
+    dd_carnumber: "J",
     dd_email: ""
   }
 })

@@ -12,6 +12,8 @@ Page({
         "phonenumber": ''
     },
 
+    
+
     /** 
      * 点击注册函数逻辑
     */
@@ -23,6 +25,12 @@ Page({
             //输入不完整，需要弹窗提醒
             Dialog.alert({
                 message: '表格未填写完整， 请填写',
+              }).then(() => {
+                // on close
+              });
+        } else if(!this.dd_check(this.data.phonenumber)) {
+            Dialog.alert({
+                message: '电话号码格式错误',
               }).then(() => {
                 // on close
               });
@@ -46,8 +54,9 @@ Page({
                     wx.switchTab({
                         url: '/pages/login/login',
                     })
-                    //修改全局变量token值与dd_islogin
+
                     if(失败){}
+                    //返回问题原因
                     */
                     
                 },
@@ -57,6 +66,12 @@ Page({
             })
             
         }
+    },
+
+    dd_check : function(str) {
+        if(str.length != 11) return false;
+        if(str[0] !== '1') return false;
+        return true;
     },
 
     /**

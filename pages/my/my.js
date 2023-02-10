@@ -8,7 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        myname: "das",
+        myname: "",
         myphone: "",
         myemail: "",
         mycar: ""
@@ -52,7 +52,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        
+        this.setData({
+            myname: app.globalData.dd_username,
+            myphone: app.globalData.dd_phonenumber,
+            myemail: app.globalData.dd_email,
+            mycar: app.globalData.dd_carnumber
+        })
     },
 
     /**

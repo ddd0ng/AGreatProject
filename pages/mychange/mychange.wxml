@@ -1,2 +1,80 @@
 <!--pages/mychange/mychange.wxml-->
-<text>pages/mychange/mychange.wxml</text>
+<!--pages/my/my.wxml-->
+
+<van-dialog id="van-dialog" />
+
+<!--基本信息盒模型  -->
+<view class='basic'>
+	<text class='basictext'>基本信息</text>
+	<!--名字部分  -->
+	<view class='namebox'>
+		<image class='nameicon-left' src='/static/user.png'></image>
+		<text class='name'>名字</text>
+        <text >\n </text>
+        <van-cell-group>
+        <van-field
+            maxlength = "15"
+            value="{{myname}}"
+            placeholder="请输入昵称"
+            border="{{ false }}"
+            bind:change="NameChange"
+            />
+        </van-cell-group>
+		<!--<text class='nametext'>{{ myname }}</text>-->
+	</view>
+	<!-- 手机号部分 -->
+	<view class='namebox'>
+		<image class='nameicon-left' src='/static/phone.png'></image>
+		<text class='name'>手机号码</text>
+        <text >\n </text>
+        <van-cell-group>
+        <van-field
+            maxlength = "15"
+            value="{{myphone}}"
+            placeholder="请输入手机号码"
+            border="{{ false }}"
+            bind:change="PhoneChange"
+            />
+        </van-cell-group>
+	</view>
+	<!-- 邮箱号 -->
+    <view class='namebox'>
+		<image class='nameicon-left' src='/static/email.png'></image>
+		<text class='name'>邮箱</text>
+        <text >\n </text>
+        <van-cell-group>
+        <van-field
+            maxlength = "15"
+            value="{{myemail}}"
+            placeholder="请输入邮箱"
+            border="{{ false }}"
+            bind:change="EmailChange"
+            />
+        </van-cell-group>
+	</view>
+
+    <!-- 车牌号 -->
+    <view class='namebox'>
+		<image class='nameicon-left' src='/static/cars.png'></image>
+		<text class='name'>车牌号</text>
+        <text >\n </text>
+        <van-cell-group>
+        <van-field
+            maxlength = "15"
+            value="{{mycar}}"
+            placeholder="请输入车牌号"
+            border="{{ false }}"
+            bind:change="CarChange"
+            />
+        </van-cell-group>
+        <van-button icon="/static/camera.png" type="info" bindtap="ClickImage">
+        拍照上传
+        </van-button>
+	</view>
+
+    
+
+</view>
+<view class="btn_mid">
+<van-button class="dd_btn" type="info" size = "normal" bindtap="tapchange">确定修改</van-button>
+</view>

@@ -32,13 +32,18 @@ Page({
             console.log("denglu");
             //如果登录成功
             app.globalData.dd_islogin = true;
+            app.globalData.token = "xxx";
             //token也需要记录
+            wx.navigateTo({
+              url: '/pages/home/home',
+            })
             
         }
         
         //像后端发送账号密码，会获取一个token
         //成功时，记录全局变量token与dd_islogin，跳转到首页
         //失败时，显示原因
+        //大概有两种原因，用户名不存在或密码错误
         
     },
 
