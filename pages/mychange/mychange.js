@@ -1,6 +1,7 @@
 // pages/mychange/mychange.js
 var app = getApp();
 import Dialog from '@vant/weapp/dialog/dialog';
+
 Page({
 
     /**
@@ -11,7 +12,11 @@ Page({
         "myphone": "",
         "myemail": "",
         "mycar": "",
-        "srcImage": ""
+        "srcImage": "",
+        "ddname" : "",
+        "ddphone" : "",
+        "ddemail" : "",
+        "ddcar" : ""
         /*
         "nameplaceholder": "",
         "phoneplaceholder": "",
@@ -55,10 +60,10 @@ Page({
      * 向后端请求修改信息
      */
     tapchange() {
-        console.log(this.data.myname);
-        console.log(this.data.myphone);
-        console.log(this.data.myemail);
-        console.log(this.data.mycar);
+        //console.log(this.data.myname);
+        //console.log(this.data.myphone);
+        //console.log(this.data.myemail);
+        //console.log(this.data.mycar);
         if(!this.checkphone(this.data.myphone)) {
             Dialog.alert({
                 message: '电话号码格式错误',
@@ -78,18 +83,76 @@ Page({
                 // on close
               });
         } else {
-            wx.request({
-            url: 'url',
-            data: {
+            // 判断哪一位需要修改
+            /*
+            if(this.data.myname !== this.data.ddname) {
+                wx.request({
+                  url: 'http://sm788v.natappfree.cc/api/v1/user/eamil',
+                  header: { 'Authorization': app.globalData.token },
+                  data: {
 
-            },
-            method: 'post',
-            success: function(res) {
-                //如果成功，修改全局值
-                //失败返回对应原因
+                  },
+                  method: 'post',
+                  success: function(res) {
+                    //修改当前存储变量
+                  }
+                })
+            }
+            */
+            if(this.data.myphone !== this.data.ddphone) {
+                var that = this;
+                wx.request({
+                    url: 'http://sm788v.natappfree.cc/api/v1/user/xxxx',
+                    header: { 'Authorization': app.globalData.token },
+                    data: {
+                        phone : this.data.myphone
+                    },
+                    method: 'post',
+                    success: function(res) {
+                        //console.log("ok");
+                        console.log("res");
+                      //修改当前存储变量
+                      app.globalData.dd_phonenumber = that.data.myphone;
+                    }
+                  })
             }
 
-            })
+            if(this.data.myemail !== this.data.ddemail) {
+                var that = this;
+                wx.request({
+                    url: 'http://sm788v.natappfree.cc/api/v1/user/xxxx',
+                    header: { 'Authorization': app.globalData.token },
+                    data: {
+                        phone : this.data.myemail
+                    },
+                    method: 'post',
+                    success: function(res) {
+                        //console.log("ok");
+                        //console.log("res");
+                      //修改当前存储变量
+                      app.globalData.dd_email = that.data.myemail;
+                      console.log(app.globalData);
+                    }
+                  })
+            }
+            if(this.data.mycar !== this.data.ddcar) {
+                var that = this;
+                wx.request({
+                    url: 'http://sm788v.natappfree.cc/api/v1/user/xxxx',
+                    header: { 'Authorization': app.globalData.token },
+                    data: {
+                        phone : this.data.mycar
+                    },
+                    method: 'post',
+                    success: function(res) {
+                        //console.log("ok");
+                        //console.log("res");
+                      //修改当前存储变量
+                      app.globalData.dd_email = that.data.mycar;
+                      console.log(app.globalData);
+                    }
+                  })
+            }
         }
     },
 
@@ -99,6 +162,7 @@ Page({
      */
 
     checkphone: function(str) {
+        return true;
         if(str.length !== 11) return false;
         if(str[0] !== '1') return false;
         return true;
@@ -110,10 +174,11 @@ Page({
                 return true;
             }
         }
-        return false;
+        return true;
     },
 
     checkcar: function(str) {
+        return true;
         if(str.length !== 5) return false;
         return true;
     },
@@ -175,7 +240,11 @@ Page({
             myname: app.globalData.dd_username,
             myphone: app.globalData.dd_phonenumber,
             myemail: app.globalData.dd_email,
-            mycar: app.globalData.dd_carnumber
+            mycar: app.globalData.dd_carnumber,
+            ddname: app.globalData.dd_username,
+            ddphone: app.globalData.dd_phonenumber,
+            ddemail: app.globalData.dd_email,
+            ddcar: app.globalData.dd_carnumber
             /*
             nameplaceholder: this.data.myname,
             phoneplaceholder: this.data.myphone,

@@ -21,7 +21,7 @@ Page({
     },
 
     dd_login() {
-        console.log(this.data);
+        //console.log(this.data);
         if(this.data.username === "" || this.data.password === "") {
             Dialog.alert({
                 message: '表格未填写完整， 请填写',
@@ -29,7 +29,7 @@ Page({
                 // on close
               });
         } else {
-            console.log("denglu");
+            //console.log("denglu");
             wx.request({
               //url: 'http://7xtdd6.natappfree.cc/api/v1/user/login',
               url: 'http://sm788v.natappfree.cc/api/v1/user/login',
@@ -52,7 +52,7 @@ Page({
                       header: { 'Authorization': app.globalData.token },
                       method: 'get',
                       success: function(rr) {
-                        console.log(rr);
+                        //console.log(rr);
                         app.globalData.dd_username = rr.data.data.user_name;
                         app.globalData.dd_phonenumber = rr.data.data.phone;
                         app.globalData.dd_email = rr.data.data.email;
