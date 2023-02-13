@@ -29,12 +29,31 @@
     </swiper-item>
 </swiper>
 
-<view> 
-    <van-button round type="info">充电</van-button>
 
-    <van-button round type="info">预约</van-button>
+
+<view class='project'>
+    <navigator url='/pages/charge/charge'>
+        <image class='headimage' src='/static/charge.png'></image>
+        <view class='projecttext'>
+            <text class='biaoti'>进入充电区</text>
+            <text class='jianjie'>给您最好的服务</text>
+            <text class='field'>期待你的来临</text>
+        </view>
+        <view class='openpush'></view>
+    </navigator>
 </view>
 
+<view class='project'>
+    <navigator url='/pages/reverse/reverse'>
+        <image class='headimage' src='/static/reverse.png'></image>
+        <view class='projecttext'>
+            <text class='biaoti'>提前预约一下</text>
+            <text class='jianjie'>查看当前空闲充电桩</text>
+            <text class='field'>万事顺利</text>
+        </view>
+        <view class='openpush'></view>
+    </navigator>
+</view>
 
 
 

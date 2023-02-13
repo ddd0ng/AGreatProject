@@ -9,7 +9,7 @@ Page({
     data: {
         "username": '',
         "password": '',
-        "phonenumber": ''
+        //"phonenumber": ''
     },
 
     
@@ -20,17 +20,11 @@ Page({
     dd_register:function() {
         console.log(this.data); 
         console.log(app.globalData.dd_islogin);
-        if(this.data.username === "" || this.data.password === "" || this.data.phonenumber === "") {
+        if(this.data.username === "" || this.data.password === "" ) {
             console.log("need more");
             //输入不完整，需要弹窗提醒
             Dialog.alert({
                 message: '表格未填写完整， 请填写',
-              }).then(() => {
-                // on close
-              });
-        } else if(!this.dd_check(this.data.phonenumber)) {
-            Dialog.alert({
-                message: '电话号码格式错误',
               }).then(() => {
                 // on close
               });
@@ -39,7 +33,8 @@ Page({
             console.log("send");
             
             wx.request({
-                url: `http://7xtdd6.natappfree.cc/api/v1/user/register`, 
+                //url: `http://7xtdd6.natappfree.cc/api/v1/user/register`,
+                url:  `http://sm788v.natappfree.cc/api/v1/user/register`,
                 //header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
                 data: {
                     user_name: this.data.username,
@@ -48,8 +43,25 @@ Page({
                 },
                 method: 'post',
                 success: function (res) {
-                    console.log("成功");
+                    //console.log("成功");
                     console.log(res);
+                    console.log(res.data.msg);
+                    if(res.data.status === 200) {
+                        Dialog.alert({
+                            message: "注册成功",
+                          }).then(() => {
+                            // on close
+                          });
+                        wx.switchTab({
+                            url: '/pages/login/login',
+                        })
+                    } else {
+                        Dialog.alert({
+                            message: res.data.msg,
+                          }).then(() => {
+                            // on close
+                          });
+                    }
                     /*if(成功) {}
                     wx.switchTab({
                         url: '/pages/login/login',

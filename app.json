@@ -6,7 +6,9 @@
     "pages/my/my",
     "pages/login/login",
     "pages/register/register",
-    "pages/mychange/mychange"
+    "pages/mychange/mychange",
+    "pages/charge/charge",
+    "pages/reverse/reverse"
   ],
   "tabBar": {
       "list": [{

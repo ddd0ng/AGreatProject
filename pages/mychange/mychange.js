@@ -1,5 +1,6 @@
 // pages/mychange/mychange.js
 var app = getApp();
+import Dialog from '@vant/weapp/dialog/dialog';
 Page({
 
     /**
@@ -54,19 +55,23 @@ Page({
      * 向后端请求修改信息
      */
     tapchange() {
-        if(!checkphone(myphone)) {
+        console.log(this.data.myname);
+        console.log(this.data.myphone);
+        console.log(this.data.myemail);
+        console.log(this.data.mycar);
+        if(!this.checkphone(this.data.myphone)) {
             Dialog.alert({
                 message: '电话号码格式错误',
               }).then(() => {
                 // on close
               });
-        } else if(!checkemail(myemail)){
+        } else if(!this.checkemail(this.data.myemail)){
             Dialog.alert({
                 message: '邮箱格式错误',
               }).then(() => {
                 // on close
               });
-        } else if(!checkcar(mycar)) {
+        } else if(!this.checkcar(this.data.mycar)) {
             Dialog.alert({
                 message: '车牌格式错误',
               }).then(() => {
@@ -101,7 +106,7 @@ Page({
 
     checkemail: function(str) {
         for(let i = 0; i < str.lenghh; i ++ ) {
-            if(str[i] === '@' && i !== str.length) {
+            if(str[i] === "@" && i !== str.length) {
                 return true;
             }
         }

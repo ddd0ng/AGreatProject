@@ -25,6 +25,7 @@
             bind:change="PassChange"
         />
     </van-cell-group>
+    <!--
     <label>手机号</label>
     <van-cell-group>
         <van-field
@@ -35,6 +36,7 @@
             bind:change="NumChange"
         />
     </van-cell-group>
+    -->
     <wxs module="sample">
     //<text user-select="true"> 56Wd5L2g5aSp5aSp5byA5b+D\n</text>
     //<label>(base64)</label>

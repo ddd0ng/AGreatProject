@@ -30,21 +30,55 @@ Page({
               });
         } else {
             console.log("denglu");
-            //如果登录成功
-            app.globalData.dd_islogin = true;
-            app.globalData.token = "xxx";
-            //token也需要记录
-            wx.navigateTo({
-              url: '/pages/home/home',
+            wx.request({
+              //url: 'http://7xtdd6.natappfree.cc/api/v1/user/login',
+              url: 'http://sm788v.natappfree.cc/api/v1/user/login',
+              data: {
+                user_name: this.data.username,
+                password:this.data.password,
+              },
+              method: 'post',
+              success: function(res) {
+                  //console.log("okkk");
+                  //console.log(res);
+                  if(res.data.status === 200) {
+                    app.globalData.dd_islogin = true;
+                    app.globalData.token = res.data.data.token;
+                    //console.log(app.globalData.token);
+                    
+                    //保存下个人信息
+                    wx.request({
+                      url: 'http://sm788v.natappfree.cc/api/v1/user/show',
+                      header: { 'Authorization': app.globalData.token },
+                      method: 'get',
+                      success: function(rr) {
+                        console.log(rr);
+                        app.globalData.dd_username = rr.data.data.user_name;
+                        app.globalData.dd_phonenumber = rr.data.data.phone;
+                        app.globalData.dd_email = rr.data.data.email;
+                        app.globalData.dd_carnumber = rr.data.data.car_number;
+                        console.log(app.globalData);
+                      }
+                    })
+                    
+                    Dialog.alert({
+                        message: res.data.msg,
+                      }).then(() => {
+                        // on close
+                      });
+                        //wx.switchTab({
+                        //    url: '/pages/home/home',
+                        //})
+                  } else {
+                    Dialog.alert({
+                        message: res.data.msg,
+                      }).then(() => {
+                        // on close
+                      });
+                  }
+              }
             })
-            
         }
-        
-        //像后端发送账号密码，会获取一个token
-        //成功时，记录全局变量token与dd_islogin，跳转到首页
-        //失败时，显示原因
-        //大概有两种原因，用户名不存在或密码错误
-        
     },
 
     UserChange(event) {

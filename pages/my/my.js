@@ -25,8 +25,8 @@ Page({
      */
     onLoad(options) {
         if(app.globalData.dd_islogin === false) {
-            wx.navigateTo({
-              url: '/pages/register/register',
+            wx.switchTab({
+              url: '/pages/login/login',
             })
         } else {
             console.log(app.globalData.dd_islogin);
