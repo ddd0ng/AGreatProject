@@ -43,7 +43,12 @@
     "van-field": "@vant/weapp/field/index",
     "van-dialog": "@vant/weapp/dialog/index",
     "van-icon": "@vant/weapp/icon/index",
-    "van-image": "@vant/weapp/image/index"
+    "van-image": "@vant/weapp/image/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-count-down": "@vant/weapp/count-down/index",
+    "van-circle": "@vant/weapp/circle/index",
+    "van-picker": "@vant/weapp/picker/index"
   },
   "window":{
     "backgroundTextStyle":"light",

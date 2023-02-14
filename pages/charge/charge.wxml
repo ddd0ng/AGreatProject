@@ -1,2 +1,48 @@
 <!--pages/charge/charge.wxml-->
-<text>pages/charge/charge.wxml</text>
+<van-dialog id="van-dialog" />
+<!--
+<view wx:for="{{alls}}" wx:for-index="idx" wx:for-item="itemName">
+  {{idx}}: {{itemName.status}}
+</view>
+-->
+
+<view wx:for="{{alls}}" wx:for-index="idx" wx:for-item="itemName" class = "project">
+  <!--{{idx}}: {{itemName.status}}-->
+    <view class = "ddimage">
+    <image class="Limage" src="/static/smile/{{idx}}.png"></image>    
+    </view>
+
+    <view class = "ddleft">
+        <text >
+            {{itemName.name}}号
+        </text>
+        <image wx:if = "{{itemName.isfree}}" class = "light" src = "/static/free.png"></image>
+        <image wx:if = "{{itemName.isbusy}}" class = "light" src = "/static/busy.png"></image>
+    </view>
+
+    <view wx:if="{{itemName.isfree}}" class = "ddright">
+        <van-button wx:if = "{{itemName.isfree}}" round type="info" bindtap="ddpay">点击充电</van-button>
+    </view>
+
+    <view wx:if = "{{itemName.isbusy}}" class = "ddright2">
+        <text>
+            当前剩余时间
+        </text>
+        <van-count-down time="{{ itemName.time }}" />
+    </view>
+
+</view>
+
+
+<van-dialog
+  use-slot
+  title="选择时长"
+  show="{{dddialog}}"
+  show-cancel-button
+  bind:close="ddcancle"
+  confirm-button-open-type="ddconfirm"
+  
+>
+<van-picker columns="{{ times }}" bind:change="onChange" />
+
+</van-dialog>
