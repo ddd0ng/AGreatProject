@@ -1,1 +1,72 @@
 <!--pages/reverse/reverse.wxml-->
+<van-dialog id="van-dialog" />
+
+<view wx:for="{{alls}}" wx:for-index="idx" wx:for-item="itemName" class = "project">
+  <!--{{idx}}: {{itemName.status}}-->
+    <view class = "ddimage">
+    <image class="Limage" src="/static/smile/{{idx + 5}}.png"></image>    
+    </view>
+
+    <view class = "ddleft">
+        <text >
+            {{itemName.name}}号
+        </text>
+        <image wx:if = "{{itemName.isfree}}" class = "light" src = "/static/free.png"></image>
+        <image wx:if = "{{itemName.isbusy}}" class = "light" src = "/static/busy.png"></image>
+    </view>
+
+    <view wx:if="{{itemName.isfree}}" class = "ddright">
+        <van-button wx:if = "{{itemName.isfree}}" round type="info" bindtap="dddirect" data-value = "{{itemName.name}}">直接预约</van-button>
+    </view>
+
+    <view wx:if = "{{itemName.isbusy}}" class = "ddright2">
+    
+        <text>
+            当前剩余时间
+        </text>
+        <van-count-down time="{{ itemName.time }}" />
+        
+    </view>
+
+    <view wx:if = "{{itemName.isbusy}}" class = "ddright3">
+    
+    <van-button round type="info" bindtap="ddindirect" data-value = "{{itemName.name}}">提前预约</van-button>
+    
+    </view>
+
+</view>
+
+<van-dialog
+  use-slot
+  title="选择一个起始时间"
+  show="{{dddialog1}}"
+  show-cancel-button
+  bind:close="ddcancle1"
+  confirm-button-open-type="ddconfirm"
+  
+>
+<van-datetime-picker
+  type="time"
+  value="{{ begintime }}"
+  min-hour="{{ minHour }}"
+  max-hour="{{ maxHour }}"
+  bind:input="begininput"
+/>
+
+</van-dialog>
+
+
+<van-dialog
+  use-slot
+  title="选择充电时长"
+  show="{{dddialog2}}"
+  show-cancel-button
+  bind:close="ddcancle2"
+  confirm-button-open-type="ddconfirm"
+
+  
+>
+
+<van-picker columns="{{ times }}" bind:change="onChange" />
+
+</van-dialog>
