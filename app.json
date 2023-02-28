@@ -18,7 +18,7 @@
           "selectedIconPath": "/static/secondhome.png"
       }, {
           "pagePath": "pages/catalog/catalog",
-          "text": "分类",
+          "text": "社区",
           "iconPath": "/static/firstcatelog.png",
           "selectedIconPath": "/static/secondcatelog.png"
       }, {

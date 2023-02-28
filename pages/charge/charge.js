@@ -142,15 +142,23 @@ Page({
         //console.log(event);
         //对应的编号
         //console.log(event.currentTarget.dataset.value);
-        this.setData({
-            dddialog : true,
-            chargeid : event.currentTarget.dataset.value
-        })
-        //console.log(this.data.chargeid);
+
+        if(app.globalData.dd_islogin === false) {
+            wx.switchTab({
+              url: '/pages/login/login',
+            })
+        } else {
+            this.setData({
+                dddialog : true,
+                chargeid : event.currentTarget.dataset.value
+            })
+            //console.log(this.data.chargeid);
+        }
     },
 
     //点击确认和取消按钮，
     ddcancle : function(res) {
+        let that = this;
         this.setData({
             dddialog : false
         })
@@ -160,6 +168,24 @@ Page({
             console.log(this.data.chargeid);
             console.log(this.data.chargetime);
             //发送给后端，等后面再写
+            wx.request({
+              url: app.globalData.ddurl + '/api/v1/user/change',
+              header: { 'Authorization': app.globalData.token },      
+              data : {
+                id : this.data.chargeid,
+                time : this.data.chargetime,
+              },
+              method : 'post',
+              success : function (res) {
+                  //如果成功
+                Dialog.alert({
+                    message: "充电成功",
+                  }).then(() => {
+                    // on close
+                  });
+                that.ddupdate();
+              }
+            })
         }
     },
     /*好像没什么用，没看懂
@@ -225,7 +251,13 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-       // this.ddupdate();
+    //    if(app.globalData.dd_islogin === false) {
+    //         wx.switchTab({
+    //         url: '/pages/login/login',
+    //         })
+    //     }
+
+        // this.ddupdate();
     },
 
     /**
