@@ -21,7 +21,7 @@
     </view>
 
     <view wx:if="{{itemName.isfree}}" class = "ddright">
-        <van-button wx:if = "{{itemName.isfree}}" round type="info" bindtap="ddpay">点击充电</van-button>
+        <van-button wx:if = "{{itemName.isfree}}" round type="info" bindtap="ddpay" data-value = "{{itemName.name}}">点击充电</van-button>
     </view>
 
     <view wx:if = "{{itemName.isbusy}}" class = "ddright2">

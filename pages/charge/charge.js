@@ -10,10 +10,40 @@ Page({
     data: {
 
         dd : 2,
+        //控制弹窗内容
         dddialog : false,
         times: ['请选择','1小时', '2小时', '3小时', '4小时', '5小时'],
+        chargeid : -1,
         chargetime : 0,
         alls : [
+            {
+                "name" : "0",
+                "isfree" : true,
+                "isbusy" : false,
+                "time" : 0
+            }, {
+                "name" : "1",
+                "isfree" : true,
+                "isbusy" : false,
+                "time" : 0
+            }, {
+                "name" : "2",
+                "isfree" : true,
+                "isbusy" : false,
+                "time" : 0
+            }, {
+                "name" : "3",
+                "isfree" : true,
+                "isbusy" : false,
+                "time" : 0
+            }, {
+                "name" : "4",
+                "isfree" : true,
+                "isbusy" : false,
+                "time" : 0
+            }
+
+            /*
             {
                 "name" : "1",
                 "isfree" : true,
@@ -85,7 +115,7 @@ Page({
                 "isfree" : true,
                 "isbusy" : false,
                 "time" : 3412412341
-            },
+            },*/
         ]
     },
 
@@ -100,16 +130,23 @@ Page({
             })
         } else {
             this.setData({
-                chargetime: event.detail.value[0] * 60 * 60 * 1000
+                //chargetime: event.detail.value[0] * 60 * 60 * 1000
+                chargetime: event.detail.value[0]
+                //小时制
             })
         }
       },
 
       //点击充电按钮，
-    ddpay : function() {
+    ddpay : function(event) {
+        //console.log(event);
+        //对应的编号
+        //console.log(event.currentTarget.dataset.value);
         this.setData({
-            dddialog : true
+            dddialog : true,
+            chargeid : event.currentTarget.dataset.value
         })
+        //console.log(this.data.chargeid);
     },
 
     //点击确认和取消按钮，
@@ -120,6 +157,7 @@ Page({
         //console.log("au");
         //console.log(res);
         if(res.detail === "confirm") {
+            console.log(this.data.chargeid);
             console.log(this.data.chargetime);
             //发送给后端，等后面再写
         }
@@ -128,6 +166,46 @@ Page({
     ddconfirm : function() {
         console.log("fas");
     },*/
+
+    //更新充电桩信息
+    ddupdate : function () {
+        let that = this;
+        wx.request({
+          //url: 'http://3xb7ny.natappfree.cc/api/v1/show',
+          url: app.globalData.ddurl + "/api/v1/show",
+          method: 'get',
+          success : function(res) {
+              console.log("update!!!");
+              console.log(res);
+              console.log(res.data.data);
+              //console.log(that.data);
+              //console.log(new Date().getTime());
+              let nowtime = new Date().getTime();
+              //console.log(nowtime);
+              
+              for(let i = 0; i < 5; i ++ ) {
+                  if(res.data.data[i].status === 1) {
+                      //占用状态
+                      let tt = res.data.data[i].end_time - nowtime;
+                      that.setData({
+                         [`alls[${i}].isfree`] : false,
+                         [`alls[${i}].isbusy`] : true,
+                         [`alls[${i}].time`] : tt
+                      })
+                  } else if(res.data.data[i].status === 0) {
+                      //空闲状态
+                        that.setData({
+                            //'alls[i].name' : res.data.data[i].id,
+                            [`alls[${i}].isfree`] : true,
+                            [`alls[${i}].isbusy`] : false,
+                            [`alls[${i}].time`] : 0
+                        })
+                  }
+                  //console.log(that.data.tt);
+              }
+          }
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -147,7 +225,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+       // this.ddupdate();
     },
 
     /**

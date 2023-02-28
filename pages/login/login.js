@@ -31,8 +31,8 @@ Page({
         } else {
             //console.log("denglu");
             wx.request({
-              //url: 'http://7xtdd6.natappfree.cc/api/v1/user/login',
-              url: 'http://sm788v.natappfree.cc/api/v1/user/login',
+              //url: 'http://3xb7ny.natappfree.cc/api/v1/user/login',
+              url: app.globalData.ddurl + "/api/v1/user/login",
               data: {
                 user_name: this.data.username,
                 password:this.data.password,
@@ -48,11 +48,12 @@ Page({
                     
                     //保存下个人信息
                     wx.request({
-                      url: 'http://sm788v.natappfree.cc/api/v1/user/show',
+                      //url: 'http://3xb7ny.natappfree.cc/api/v1/user/show',
+                      url: app.globalData.ddurl + "/api/v1/user/show",
                       header: { 'Authorization': app.globalData.token },
                       method: 'get',
                       success: function(rr) {
-                        //console.log(rr);
+                        console.log(rr);
                         app.globalData.dd_username = rr.data.data.user_name;
                         app.globalData.dd_phonenumber = rr.data.data.phone;
                         app.globalData.dd_email = rr.data.data.email;

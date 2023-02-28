@@ -33,8 +33,8 @@ Page({
             console.log("send");
             
             wx.request({
-                //url: `http://7xtdd6.natappfree.cc/api/v1/user/register`,
-                url:  `http://sm788v.natappfree.cc/api/v1/user/register`,
+                //url:  `http://3xb7ny.natappfree.cc/api/v1/user/register`,
+                url: app.globalData.ddurl + "/api/v1/user/register",
                 //header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
                 data: {
                     user_name: this.data.username,
