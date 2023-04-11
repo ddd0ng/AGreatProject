@@ -1,14 +1,14 @@
 {
   "pages":[
     "pages/home/home",
-    "pages/catalog/catalog",
-    "pages/friends/friends",
+    "pages/chat/chat",
     "pages/my/my",
     "pages/login/login",
     "pages/register/register",
     "pages/mychange/mychange",
     "pages/charge/charge",
-    "pages/reverse/reverse"
+    "pages/reverse/reverse",
+    "pages/history/history"
   ],
   "tabBar": {
       "list": [{
@@ -16,22 +16,17 @@
           "text": "首页",
           "iconPath": "/static/firsthome.png",
           "selectedIconPath": "/static/secondhome.png"
-      }, {
-          "pagePath": "pages/catalog/catalog",
-          "text": "社区",
-          "iconPath": "/static/firstcatelog.png",
-          "selectedIconPath": "/static/secondcatelog.png"
-      }, {
-        "pagePath": "pages/friends/friends",
-        "text": "好友",
-        "iconPath": "/static/firstfriend.png",
-        "selectedIconPath": "/static/secondfriend.png"
-      }, {
+      },{
         "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "/static/firstmy.png",
         "selectedIconPath": "/static/secondmy.png"
       }, {
+        "pagePath": "pages/chat/chat",
+        "text": "chat",
+        "iconPath": "/static/firstfriend.png",
+        "selectedIconPath": "/static/secondfriend.png"
+      },{
           "pagePath": "pages/login/login",
           "text": "我的",
           "iconPath": "/static/firstmy.png",

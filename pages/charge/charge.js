@@ -178,6 +178,7 @@ Page({
               method : 'post',
               success : function (res) {
                   //如果成功
+                  console.log(res);
                 Dialog.alert({
                     message: "充电成功",
                   }).then(() => {
@@ -257,7 +258,7 @@ Page({
     //         })
     //     }
 
-        // this.ddupdate();
+        this.ddupdate();
     },
 
     /**

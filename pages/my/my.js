@@ -20,6 +20,13 @@ Page({
         })
     },
 
+    //点击跳转历史订单
+    taptohistory() {
+        wx.navigateTo({
+            url: '/pages/history/history',
+          })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */

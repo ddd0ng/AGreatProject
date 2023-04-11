@@ -67,9 +67,9 @@ Page({
                       }).then(() => {
                         // on close
                       });
-                        //wx.switchTab({
-                        //    url: '/pages/home/home',
-                        //})
+                        wx.switchTab({
+                            url: '/pages/home/home',
+                        })
                   } else {
                     Dialog.alert({
                         message: res.data.msg,

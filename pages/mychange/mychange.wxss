@@ -78,9 +78,25 @@
     /* left: 0em; */
     padding-left: 10rpx;
   }
+  .nameicon-right {
+    padding-left: 80rpx;
+  }
+
   .btn_mid{
     height: 150px;
     display: flex;
     align-items: center;
     justify-content: center; 
   }
+
+  .input-container {
+    padding: 10px 0;
+  }
+  
+  .input {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    padding: 5px 0;
+    text-align: center;
+  }
+  

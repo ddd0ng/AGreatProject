@@ -21,6 +21,6 @@ App({
     dd_phonenumber: "",
     dd_carnumber: "",
     dd_email: "",
-    ddurl: "http://6kh55m.natappfree.cc"
+    ddurl: "https://www.cardd.fun"
   }
 })

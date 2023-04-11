@@ -16,7 +16,9 @@ Page({
         "ddname" : "",
         "ddphone" : "",
         "ddemail" : "",
-        "ddcar" : ""
+        "ddcar" : "",
+        "sms" : "",
+        smsshow : false
         /*
         "nameplaceholder": "",
         "phoneplaceholder": "",
@@ -24,6 +26,46 @@ Page({
         "carplaceholder": ""
         */
     },
+
+    //发送短信验证码
+    SmsVerification() {
+        //内容无修改不需发验证码
+        //console.log(this.data.sms);
+        if(this.data.myphone !== this.data.ddphone) {
+            //调出验证码
+            this.setData({
+                smsshow : true
+            });
+        }
+    },
+
+    showPopup() {
+        this.setData({ smsshow: true });
+      },
+    
+      onClose() {
+        this.setData({ smsshow: false });
+      },
+    
+      onInput(event) {
+        this.setData({ sms: event.detail.value });
+      },
+
+      onSubmit() {
+        const { sms } = this.data;
+        if (sms.length === 6) {
+          // 处理验证码的逻辑
+          console.log("验证码：", sms);
+    
+          // 验证码处理完毕后关闭弹出框
+          this.onClose();
+        } else {
+          wx.showToast({
+            title: "请输入6位验证码",
+            icon: "none",
+          });
+        }
+      },
 
     //拍照上传功能，返回车牌号存下
     ClickImage() {
@@ -43,7 +85,7 @@ Page({
             }
         })
     },
-    //发给服务端处理
+    //发给服务端处理图片
     up() {
         wx.uploadFile({
           filePath: this.data.srcImage,
@@ -85,6 +127,7 @@ Page({
         } else {
             // 判断哪一位需要修改
             /*
+            名字先不允许修改
             if(this.data.myname !== this.data.ddname) {
                 wx.request({
                   url: 'http://sm788v.natappfree.cc/api/v1/user/eamil',
@@ -102,7 +145,8 @@ Page({
             if(this.data.myphone !== this.data.ddphone) {
                 var that = this;
                 wx.request({
-                    url: 'http://sm788v.natappfree.cc/api/v1/user/xxxx',
+                    //url: 'http://sm788v.natappfree.cc/api/v1/user/xxxx',
+                    url : app.globalData.ddurl + '/api/v1/user/phone',
                     header: { 'Authorization': app.globalData.token },
                     data: {
                         phone : this.data.myphone
@@ -110,7 +154,7 @@ Page({
                     method: 'post',
                     success: function(res) {
                         //console.log("ok");
-                        console.log("res");
+                        console.log(res);
                       //修改当前存储变量
                       app.globalData.dd_phonenumber = that.data.myphone;
                     }
@@ -120,36 +164,38 @@ Page({
             if(this.data.myemail !== this.data.ddemail) {
                 var that = this;
                 wx.request({
-                    url: 'http://sm788v.natappfree.cc/api/v1/user/xxxx',
+                    //url: 'http://sm788v.natappfree.cc/api/v1/user/xxxx',
+                    url : app.globalData.ddurl + '/api/v1/user/email',
                     header: { 'Authorization': app.globalData.token },
                     data: {
-                        phone : this.data.myemail
+                        email : this.data.myemail
                     },
                     method: 'post',
                     success: function(res) {
                         //console.log("ok");
-                        //console.log("res");
+                        console.log(res);
                       //修改当前存储变量
                       app.globalData.dd_email = that.data.myemail;
-                      console.log(app.globalData);
+                      //console.log(app.globalData);
                     }
                   })
             }
             if(this.data.mycar !== this.data.ddcar) {
                 var that = this;
                 wx.request({
-                    url: 'http://sm788v.natappfree.cc/api/v1/user/xxxx',
+                    //url: 'http://sm788v.natappfree.cc/api/v1/user/xxxx',
+                    url : app.globalData.ddurl + '/api/v1/user/carnumber',
                     header: { 'Authorization': app.globalData.token },
                     data: {
-                        phone : this.data.mycar
+                        car : this.data.mycar
                     },
                     method: 'post',
                     success: function(res) {
                         //console.log("ok");
-                        //console.log("res");
+                        console.log(res);
                       //修改当前存储变量
-                      app.globalData.dd_email = that.data.mycar;
-                      console.log(app.globalData);
+                      app.globalData.dd_carnumber = that.data.mycar;
+                      //console.log(app.globalData);
                     }
                   })
             }

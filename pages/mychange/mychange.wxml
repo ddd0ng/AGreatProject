@@ -6,6 +6,9 @@
 <!--基本信息盒模型  -->
 <view class='basic'>
 	<text class='basictext'>基本信息</text>
+
+    
+
 	<!--名字部分  -->
 	<view class='namebox'>
 		<image class='nameicon-left' src='/static/user.png'></image>
@@ -26,6 +29,9 @@
 	<view class='namebox'>
 		<image class='nameicon-left' src='/static/phone.png'></image>
 		<text class='name'>手机号码</text>
+        <van-button type="primary" class='nameicon-right' size="small" bindtap="SmsVerification">
+        验证码
+        </van-button>
         <text >\n </text>
         <van-cell-group>
         <van-field
@@ -78,3 +84,25 @@
 <view class="btn_mid">
 <van-button class="dd_btn" type="info" size = "normal" bindtap="tapchange">确定修改</van-button>
 </view>
+
+<van-dialog
+  show="{{ smsshow }}"
+  use-slot
+  title="请输入验证码"
+  show-cancel-button
+  close-on-click-overlay="{{ false }}"
+  confirm-button-text="提交"
+  bind:close="onClose"
+  bind:confirm="onSubmit"
+>
+  <view class="input-container">
+    <input
+      class="input"
+      placeholder="请输入验证码"
+      type="number"
+      maxlength="6"
+      value="{{ sms }}"
+      bindinput="onInput"
+    />
+  </view>
+</van-dialog>

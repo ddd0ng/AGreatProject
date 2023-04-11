@@ -1,4 +1,4 @@
-// pages/catalog/catalog.js
+// pages/chat/chat.js
 Page({
 
     /**

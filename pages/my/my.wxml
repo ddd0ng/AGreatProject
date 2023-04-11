@@ -4,6 +4,10 @@
 <!--基本信息盒模型  -->
 <view class='basic'>
 	<text class='basictext'>基本信息</text>
+    <view style="text-align: right; padding-right: 80rpx;">
+        <van-button type="primary" bindtap="taptohistory">历史订单</van-button>
+    </view>
+    
 	<!--名字部分  -->
 	<view class='namebox'>
 		<image class='nameicon-left' src='/static/user.png'></image>
