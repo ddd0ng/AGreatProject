@@ -73,3 +73,27 @@
     right: 0rpx;
     z-index: 0;
   } 
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+  }
+  
+  .location {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10rpx;
+  }
+  
+  .weather {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #333;
+  }
+  

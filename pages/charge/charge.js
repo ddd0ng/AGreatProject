@@ -144,8 +144,11 @@ Page({
         //console.log(event.currentTarget.dataset.value);
 
         if(app.globalData.dd_islogin === false) {
-            wx.switchTab({
-              url: '/pages/login/login',
+            //wx.switchTab({
+            //  url: '/pages/login/login',
+            //})
+            wx.navigateTo({
+                url: '/pages/login/login',
             })
         } else {
             this.setData({
@@ -158,13 +161,14 @@ Page({
 
     //点击确认和取消按钮，
     ddcancle : function(res) {
-        let that = this;
+        var that = this;
         this.setData({
             dddialog : false
         })
         //console.log("au");
         //console.log(res);
         if(res.detail === "confirm") {
+            var that = this;
             console.log(this.data.chargeid);
             console.log(this.data.chargetime);
             //发送给后端，等后面再写
@@ -172,13 +176,18 @@ Page({
               url: app.globalData.ddurl + '/api/v1/user/change',
               header: { 'Authorization': app.globalData.token },      
               data : {
-                id : this.data.chargeid,
-                time : this.data.chargetime,
+                id : parseInt(this.data.chargeid) + 1,
+                time : parseInt(this.data.chargetime),
               },
               method : 'post',
+              
               success : function (res) {
+                //console.log("---");
+                //console.log(typeof(that.data.chargeid));
+                //console.log(typeof(that.data.chargetime));
+                //console.log("---");
                   //如果成功
-                  console.log(res);
+                console.log(res);
                 Dialog.alert({
                     message: "充电成功",
                   }).then(() => {
@@ -202,22 +211,29 @@ Page({
           url: app.globalData.ddurl + "/api/v1/show",
           method: 'get',
           success : function(res) {
-              console.log("update!!!");
+              console.log("更新充电桩信息");
               console.log(res);
-              console.log(res.data.data);
+              //console.log(res.data.data);
               //console.log(that.data);
               //console.log(new Date().getTime());
               let nowtime = new Date().getTime();
               //console.log(nowtime);
               
               for(let i = 0; i < 5; i ++ ) {
-                  if(res.data.data[i].status === 1) {
+                  if(res.data.data[i].status !== 0) {
                       //占用状态
-                      let tt = res.data.data[i].end_time - nowtime;
+                      let t = res.data.data[i].end_time - nowtime;
+                      let tt = res.data.data[i].reserve_end_time - nowtime;
+                      if(isNaN(t)) t = -2;
+                      if(isNaN(tt)) tt = -2;
+                        console.log("充电判断");
+                        console.log(t);
+                        console.log("预约判断")
+                        console.log(tt);
                       that.setData({
                          [`alls[${i}].isfree`] : false,
                          [`alls[${i}].isbusy`] : true,
-                         [`alls[${i}].time`] : tt
+                         [`alls[${i}].time`] : Math.max(tt, t)
                       })
                   } else if(res.data.data[i].status === 0) {
                       //空闲状态
@@ -252,11 +268,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-    //    if(app.globalData.dd_islogin === false) {
-    //         wx.switchTab({
-    //         url: '/pages/login/login',
-    //         })
-    //     }
+    //     if(app.globalData.dd_islogin === false) {
+    // wx.navigateTo({
+    //     url: '/pages/login/login',
+    // })
+    //      }
 
         this.ddupdate();
     },

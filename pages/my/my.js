@@ -20,11 +20,19 @@ Page({
         })
     },
 
-    //点击跳转历史订单
-    taptohistory() {
-        wx.navigateTo({
-            url: '/pages/history/history',
-          })
+    //点击跳转登录
+    taptologin() {
+        if(app.globalData.dd_islogin === false) {
+            wx.navigateTo({
+                url: '/pages/login/login',
+            })
+            //wx.switchTab({
+            //    url: '/pages/login/login',
+            //  })
+        } 
+        //wx.navigateTo({
+        //    url: '/pages/login/login',
+        //  })
     },
 
     /**
@@ -32,8 +40,11 @@ Page({
      */
     onLoad(options) {
         if(app.globalData.dd_islogin === false) {
-            wx.switchTab({
-              url: '/pages/login/login',
+            //wx.switchTab({
+            //  url: '/pages/login/login',
+            //})
+            wx.navigateTo({
+                url: '/pages/login/login',
             })
         } else {
             console.log(app.globalData.dd_islogin);

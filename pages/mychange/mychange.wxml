@@ -9,16 +9,16 @@
 
     
 
-	<!--名字部分  -->
+	<!--用户名部分  -->
 	<view class='namebox'>
 		<image class='nameicon-left' src='/static/user.png'></image>
-		<text class='name'>名字</text>
+		<text class='name'>用户名</text>
         <text >\n </text>
         <van-cell-group>
         <van-field
             maxlength = "15"
             value="{{myname}}"
-            placeholder="请输入昵称"
+            placeholder="请输入用户名"
             border="{{ false }}"
             bind:change="NameChange"
             />
@@ -35,9 +35,9 @@
         <text >\n </text>
         <van-cell-group>
         <van-field
-            maxlength = "15"
+            maxlength = "11"
             value="{{myphone}}"
-            placeholder="请输入手机号码"
+            placeholder="请输入手机号"
             border="{{ false }}"
             bind:change="PhoneChange"
             />
@@ -50,7 +50,7 @@
         <text >\n </text>
         <van-cell-group>
         <van-field
-            maxlength = "15"
+            maxlength = "25"
             value="{{myemail}}"
             placeholder="请输入邮箱"
             border="{{ false }}"
@@ -59,7 +59,7 @@
         </van-cell-group>
 	</view>
 
-    <!-- 车牌号 -->
+    <!--车牌 号 -->
     <view class='namebox'>
 		<image class='nameicon-left' src='/static/cars.png'></image>
 		<text class='name'>车牌号</text>
@@ -73,17 +73,28 @@
             bind:change="CarChange"
             />
         </van-cell-group>
+        <!--
         <van-button icon="/static/camera.png" type="info" bindtap="ClickImage">
         拍照上传
         </van-button>
+        -->
 	</view>
 
     
 
 </view>
 <view class="btn_mid">
-<van-button class="dd_btn" type="info" size = "normal" bindtap="tapchange">确定修改</van-button>
+<van-button class="dd_btn" type="info" size = "normal" bindtap="tapchange">授权并修改</van-button>
+<!--
+<view class="ddtext">
+    <text >
+        
+    </text>
 </view>
+-->
+</view>
+
+
 
 <van-dialog
   show="{{ smsshow }}"

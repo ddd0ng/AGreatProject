@@ -52,9 +52,20 @@ Page({
                           }).then(() => {
                             // on close
                           });
-                        wx.switchTab({
-                            url: '/pages/login/login',
-                        })
+                        //wx.switchTab({
+                        //    url: '/pages/login/login',
+                        //})
+                        Dialog.alert({
+                            message: "注册成功，请登录"
+                          }).then(() => {
+                            // on close
+                            wx.navigateTo({
+                                url: '/pages/login/login',
+                            })
+                          });
+                        //wx.navigateTo({
+                        //    url: '/pages/login/login',
+                        //})
                     } else {
                         Dialog.alert({
                             message: res.data.msg,

@@ -14,8 +14,8 @@
 </view>
 -->
 
-<view wx:for="{{alls}}" wx:for-index="idx" wx:for-item="itemName" class="project">
-    <image class='headimage' src='/static/show/{{idx}}.png'></image>
+<view wx:for="{{alls}}" wx:for-index="idx" wx:for-item="itemName" wx:if="{{itemName.is}}" class="project">
+    <image class='headimage' src='/static/show/{{idx % 9}}.png'></image>
     <view class='projecttext'>
         <text class='top'>id : {{itemName.id}}</text>
         <text class='mid'>时间 ： {{itemName.stime}}</text>

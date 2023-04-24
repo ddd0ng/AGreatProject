@@ -55,5 +55,14 @@
     </navigator>
 </view>
 
+<view>
+    <text>
+        \n
+    </text>
+</view>
 
+<view class="container">
+  <view class="location">{{location}}</view>
+  <view class="weather">{{weather}}</view>
+</view>
 

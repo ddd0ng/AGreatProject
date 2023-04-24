@@ -1,0 +1,91 @@
+<!--pages/components/components.wxml-->
+
+<van-dialog id="van-dialog" />
+
+<swiper class = "photo" autoplay="true" interval="2000" circular="true">
+    <swiper-item>
+        <van-image
+        width="25rem"
+        height="10rem"
+        fit="scale-down"
+        src="/static/com.png"
+        />
+    </swiper-item>
+</swiper>
+
+
+
+<view class="container">
+  <view class="balance">
+    <text class="balance-label">当前余额：</text>
+    <text class="balance-amount">{{balance}} 元</text>
+  </view>
+  <view class="recharge">
+    <button class="recharge-button" bindtap="recharge">立即充值</button>
+  </view>
+</view>
+
+<!--
+<view class="ddclass">
+<van-button type="info" class="ddbutton" bindtap="taptohistory">历史订单</van-button>
+</view>
+-->
+
+<view class="four">
+  <view class="left-column">
+    <van-button type="default" size="large"  class="top-left-btn" bindtap="taptohistory">历史订单</van-button>
+    <text> \n</text>
+    <van-button type="default" size="large"  class="bottom-left-btn" bindtap="taptoremind">提醒挪车 </van-button>
+  </view>
+  <view class="right-column">
+    <van-button type="default" size="large"  class="top-right-btn" bindtap="cancelcharge">取消充电</van-button>
+    <text> \n</text>
+    <van-button type="default" size="large"  class="bottom-right-btn" bindtap="cancelreverse">取消预约</van-button>
+  </view>
+</view>
+
+
+<van-dialog
+  show="{{ cardialog }}"
+  use-slot
+  title="请输入对方车牌号"
+  show-cancel-button
+  close-on-click-overlay="{{ false }}"
+  confirm-button-text="提交"
+  bind:close="onClose"
+  bind:confirm="onSubmit"
+>
+  <view class="input-container">
+    <input
+      class="input"
+      placeholder="请输入车牌号"
+      type="string"
+      maxlength="10"
+      value="{{ car }}"
+      bindinput="onInput"
+    />
+  </view>
+</van-dialog>
+
+
+<van-dialog
+  show="{{ moneydialog }}"
+  use-slot
+  title="请输入充值金额"
+  show-cancel-button
+  close-on-click-overlay="{{ false }}"
+  confirm-button-text="提交"
+  bind:close="onClose1"
+  bind:confirm="onSubmit1"
+>
+  <view class="input-container">
+    <input
+      class="input"
+      placeholder="请输入充值金额"
+      type="number"
+      maxlength="3"
+      value="{{ money }}"
+      bindinput="onInput1"
+    />
+  </view>
+</van-dialog>

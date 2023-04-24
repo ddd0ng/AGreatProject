@@ -1,7 +1,7 @@
 {
   "pages":[
     "pages/home/home",
-    "pages/chat/chat",
+    "pages/components/components",
     "pages/my/my",
     "pages/login/login",
     "pages/register/register",
@@ -17,20 +17,15 @@
           "iconPath": "/static/firsthome.png",
           "selectedIconPath": "/static/secondhome.png"
       },{
+        "pagePath": "pages/components/components",
+        "text": "个人组件",
+        "iconPath": "/static/firstcomponents.png",
+        "selectedIconPath": "/static/secondcomponents.png"
+      }, {
         "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "/static/firstmy.png",
         "selectedIconPath": "/static/secondmy.png"
-      }, {
-        "pagePath": "pages/chat/chat",
-        "text": "chat",
-        "iconPath": "/static/firstfriend.png",
-        "selectedIconPath": "/static/secondfriend.png"
-      },{
-          "pagePath": "pages/login/login",
-          "text": "我的",
-          "iconPath": "/static/firstmy.png",
-          "selectedIconPath": "/static/secondmy.png"
       }]
   },
   "usingComponents": {
@@ -52,5 +47,11 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle":"black"
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于获取天气信息"
+    }
+  },
   "sitemapLocation": "sitemap.json"
+
 }

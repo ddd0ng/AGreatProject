@@ -21,6 +21,16 @@ App({
     dd_phonenumber: "",
     dd_carnumber: "",
     dd_email: "",
-    ddurl: "https://www.cardd.fun"
+    ddurl: "https://www.cardd.fun",
+    dd_balance : 0
   }
+  /*,
+
+  updateGlobalData: function (newData) {
+    // 更新 globalData 的值
+    this.globalData = {
+      ...this.globalData,
+      ...newData
+    };
+  }*/
 })

@@ -33,6 +33,19 @@ Page({
         //console.log(this.data.sms);
         if(this.data.myphone !== this.data.ddphone) {
             //调出验证码
+
+            wx.request({
+              url: app.globalData.ddurl + "/api/v1/code",
+              header: { 'Authorization': app.globalData.token },
+              data: {
+                  phone : this.data.myphone
+              },
+              method: 'post',
+              success : function (res) {
+                  console.log(res);
+              }
+            })
+
             this.setData({
                 smsshow : true
             });
@@ -48,26 +61,46 @@ Page({
       },
     
       onInput(event) {
+        console.log(event);
         this.setData({ sms: event.detail.value });
       },
 
       onSubmit() {
         const { sms } = this.data;
-        if (sms.length === 6) {
+        if (sms.length === 4) {
           // 处理验证码的逻辑
           console.log("验证码：", sms);
     
           // 验证码处理完毕后关闭弹出框
           this.onClose();
         } else {
-          wx.showToast({
-            title: "请输入6位验证码",
-            icon: "none",
+            var that = this;
+            wx.showToast({
+                title: "请输入4位验证码",
+                icon: "none",
+                success() {
+                    that.setData({smsshow: true});
+                }
           });
+          //this.SmsVerification();
+          //this.setData({smsshow: true});
+          console.log(this.data);
         }
+
+        //this.is_true();
       },
 
+    //   is_true() {
+    //     console.log(this.data.sms.length);
+    //     if(this.data.sms.length !== 6) {
+    //         this.setData({
+    //             smsshow : true
+    //         });
+    //     }
+    //   },
+
     //拍照上传功能，返回车牌号存下
+    /*
     ClickImage() {
         wx.chooseMedia({
             count: 1,
@@ -90,13 +123,18 @@ Page({
         wx.uploadFile({
           filePath: this.data.srcImage,
           name: 'file',
-          url: 'url',
+          url: 'this.data.mycar',
+
+          //picture
+
 
           success: function(res) {
               //将返回值写入mycar
+              console.log("test!!");
+              console.log(res);
           }
         })
-    },
+    },*/
 
     /**
      * 向后端请求修改信息
@@ -149,14 +187,27 @@ Page({
                     url : app.globalData.ddurl + '/api/v1/user/phone',
                     header: { 'Authorization': app.globalData.token },
                     data: {
-                        phone : this.data.myphone
+                        phone : this.data.myphone,
+                        code : this.data.sms
                     },
                     method: 'post',
                     success: function(res) {
                         //console.log("ok");
                         console.log(res);
+                        if(res.data.status === 400) {
+                            Dialog.alert({
+                                message: "验证码错误",
+                              }).then(() => {
+                                // on close
+                              });
+                        }else {
+                            app.globalData.dd_phonenumber = that.data.myphone;
+                            wx.switchTab({
+                              url: '/pages/my/my',
+                            })
+                        }
                       //修改当前存储变量
-                      app.globalData.dd_phonenumber = that.data.myphone;
+                      
                     }
                   })
             }
@@ -176,6 +227,9 @@ Page({
                         console.log(res);
                       //修改当前存储变量
                       app.globalData.dd_email = that.data.myemail;
+                      wx.switchTab({
+                        url: '/pages/my/my',
+                      })
                       //console.log(app.globalData);
                     }
                   })
@@ -195,6 +249,9 @@ Page({
                         console.log(res);
                       //修改当前存储变量
                       app.globalData.dd_carnumber = that.data.mycar;
+                      wx.switchTab({
+                        url: '/pages/my/my',
+                      })
                       //console.log(app.globalData);
                     }
                   })
@@ -208,19 +265,19 @@ Page({
      */
 
     checkphone: function(str) {
-        return true;
+        if(str.length === 0) return true;
         if(str.length !== 11) return false;
         if(str[0] !== '1') return false;
         return true;
     },
 
     checkemail: function(str) {
-        for(let i = 0; i < str.lenghh; i ++ ) {
+        for(let i = 0; i < str.length; i ++ ) {
             if(str[i] === "@" && i !== str.length) {
                 return true;
             }
         }
-        return true;
+        return false;
     },
 
     checkcar: function(str) {

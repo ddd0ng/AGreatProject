@@ -11,6 +11,8 @@ Page({
         times: ['请选择','1小时', '2小时', '3小时', '4小时', '5小时'],
         durtime : 0,
         begintime : 0,
+        chargeid : 0,
+        chargetime : 0,
         minHour : new Date().getHours(),
         maxHour : 23,
         dddialog1 : false,
@@ -68,8 +70,29 @@ Page({
 
     //直接预约按钮
     dddirect : function (event) {
+        if(app.globalData.dd_islogin === false) {
+            wx.navigateTo({
+                url: '/pages/login/login',
+            })
+            return;
+         }
         this.setData({
-            dddialog1 : true
+            dddialog1 : true,
+            chargeid : event.currentTarget.dataset.value
+        })
+    },
+
+    //提前预约按钮
+    ddindirect : function (event) {
+        if(app.globalData.dd_islogin === false) {
+            wx.navigateTo({
+                url: '/pages/login/login',
+            })
+            return;
+         }
+        this.setData({
+            dddialog1 : true,
+            chargeid : event.currentTarget.dataset.value
         })
     },
 
@@ -94,6 +117,7 @@ Page({
         this.setData({
           begintime: event.detail,
         });
+
         console.log(this.data.begintime);
         //console.log(new Date().getHours());
       },
@@ -103,9 +127,93 @@ Page({
         this.setData({
             dddialog2 : false
         })
-
         console.log(res);
+
+        if(res.detail === "confirm") {
+            var MyData = new Date;
+            var year = MyData.getFullYear();
+            var mon = MyData.getMonth() + 1;
+            var day = MyData.getDate();
+            var now = year + "-" + mon + "-" + day + " " + this.data.begintime + ":00";
+            var sendbegin = (new Date(now)).getTime();
+            //发送预约
+            wx.request({
+                url: app.globalData.ddurl + '/api/v1/user/reserve',
+                header: { 'Authorization': app.globalData.token },      
+                data : {
+                  id : parseInt(this.data.chargeid) + 1,
+                  time : parseInt(this.data.durtime),
+                  //start_time : this.data.begintime,
+                  start_time : sendbegin.toString(),
+                },
+                method : 'post',
+                success : function (res) {
+                    //如果成功
+                    console.log(res);
+                    if(res.data.status === 200) {
+                        Dialog.alert({
+                            message: "预约成功",
+                          }).then(() => {
+                            // on close
+                          });
+                    }
+                    else {
+                        //var mes = res.data.msg;
+                        Dialog.alert({
+                            message: "预约失败，请勿重复预约" ,
+                          }).then(() => {
+                            // on close
+                          });
+                    }
+                  
+                  that.ddupdate();
+                }
+              })
+        } 
       },
+
+    //更新充电桩信息
+    ddupdate : function () {
+        let that = this;
+        wx.request({
+          //url: 'http://3xb7ny.natappfree.cc/api/v1/show',
+          url: app.globalData.ddurl + "/api/v1/show",
+          method: 'get',
+          success : function(res) {
+              console.log("update!!!");
+              console.log(res);
+              console.log(res.data.data);
+              //console.log(that.data);
+              //console.log(new Date().getTime());
+              let nowtime = new Date().getTime();
+              //console.log(nowtime);
+              
+              for(let i = 0; i < 5; i ++ ) {
+                  if(res.data.data[i].status !== 0) {
+                      //占用状态
+                      let t = res.data.data[i].end_time - nowtime;
+                      let tt = res.data.data[i].reserve_end_time - nowtime;
+                      if(isNaN(t)) t = -2;
+                      if(isNaN(tt)) tt = -2;
+                      that.setData({
+                         [`alls[${i}].isfree`] : false,
+                         [`alls[${i}].isbusy`] : true,
+                         [`alls[${i}].time`] : Math.max(tt, t)
+                      })
+                  } else if(res.data.data[i].status === 0) {
+                      //空闲状态
+                        that.setData({
+                            //'alls[i].name' : res.data.data[i].id,
+                            [`alls[${i}].isfree`] : true,
+                            [`alls[${i}].isbusy`] : false,
+                            [`alls[${i}].time`] : 0
+                        })
+                  }
+                  //console.log(that.data.tt);
+              }
+          }
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -125,7 +233,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        //     if(app.globalData.dd_islogin === false) {
+        //     wx.navigateTo({
+        //         url: '/pages/login/login',
+        //     })
+        //  }
+        this.ddupdate();
     },
 
     /**

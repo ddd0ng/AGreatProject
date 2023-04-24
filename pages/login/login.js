@@ -58,6 +58,7 @@ Page({
                         app.globalData.dd_phonenumber = rr.data.data.phone;
                         app.globalData.dd_email = rr.data.data.email;
                         app.globalData.dd_carnumber = rr.data.data.car_number;
+                        app.globalData.dd_balance = rr.data.data.money;
                         console.log(app.globalData);
                       }
                     })
